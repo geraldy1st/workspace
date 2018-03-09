@@ -21,7 +21,7 @@ class LoginForm extends Component {
   }
 
   onLoginFail() {
-    this.setState({ error: 'Authentication Failed.', loading: false });
+    this.setState({ error: 'Authentication Failed', loading: false });
   }
 
   onLoginSuccess() {
@@ -74,7 +74,6 @@ class LoginForm extends Component {
         <CardSection>
           {this.renderButton()}
         </CardSection>
-
       </Card>
     );
   }
@@ -84,7 +83,7 @@ const styles = {
   errorTextStyle: {
     fontSize: 20,
     alignSelf: 'center',
-    color: '#F00'
+    color: 'red'
   }
 };
 

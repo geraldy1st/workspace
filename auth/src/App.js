@@ -17,33 +17,37 @@ class App extends Component {
     });
 
     firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({ loggedIn: true });
-      } else {
-        this.setState({ loggedIn: false });
-      }
-    });
-  }
+        if (user) {
+          this.setState({ loggedIn: true });
+        } else {
+          this.setState({ loggedIn: false });
+        }
+      });
+    }
 
-  renderContent() {
-    switch (this.state.loggedIn) {
-      case true:
-        return <Button>Log out</Button>;
-      case false:
-        return <LoginForm />;
-      default:
-        return <Spinner size="small" />;
+    renderContent() {
+      switch (this.state.loggedIn) {
+        case true:
+          return (
+            <Button onPress={() => firebase.auth().signOut()}>
+              Log Out
+            </Button>
+          );
+        case false:
+          return <LoginForm />;
+        default:
+          return <Spinner size="large" />;
+      }
+    }
+
+    render() {
+      return (
+        <View>
+          <Header headerText="Authentication" />
+          {this.renderContent()}
+        </View>
+      );
     }
   }
 
-  render() {
-    return (
-      <View>
-        <Header headerText="Authentication" />
-          {this.renderContent()}
-      </View>
-    );
-  }
-}
-
-export default App;
+  export default App;
